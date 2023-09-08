@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(187, 187, 187);
+    display: grid;
+    place-items: center;
+}
+
+.container {
+    width: 800px;
+    height: 600px;
+    background-color: white;
+    box-shadow: rgba(0,0,0,0.5);
+    border-radius: 10px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    display: flex;
+}
+
+h1 {
+    font-size: 32px;
+    color: #fef200;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+p {
+    font-size: 16px;
+}
+
+button {
+    cursor: pointer;
+    outline: none;
+}
+
+select {
+    min-width: 15ch;
+    max-width: 30ch;
+    border: 1px solid var(--select-border);
+    border-radius: 0.25em;
+    padding: 2px 5px;
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 1.1;
+    background-color: #fff;
+}
+select:focus {
+    outline: none;
+}
+
+input {
+    border: 1px solid var(--select-border);
+    border-radius: 0.25em;
+    padding: 2px 5px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #fff;
+}
+input:focus {
+    outline: none;
+}
+.ledger {
+    width: 60%;
+    background-color: #0046be;
+    border-radius: 10px 0px 0px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.balance-container {
+    color: white;
+    padding: 15px;
+}
+
+.balance-container p{
+    font-size: 30px;
+    font-weight: 400;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: rgb(219, 219, 219);
+}
+
+.inc-exp-container {
+    height: 75%;
+    line-height: 170%;
+    color: white;
+    padding: 17px 20px;
+    background-color: rgb(32, 32, 32);
+    border-radius: 12px 12px 0px 10px;
+}
+
+.type {
+    display: flex;
+    margin: 25px 0px 7px 0px;
+}
+.type form {
+    margin-left: 20px;
+}
+
+.amount {
+    display: flex;
+    margin: 25px 0px 7px 0px;
+}
+
+.amount input {
+    width: 170px;
+    padding-left: 15px;
+    margin-left: 20px;
+}
+
+.date {
+    display: flex;
+    margin: 25px 0px 7px 0px;
+}
+.date input {
+    width: 140px;
+    margin-left: 20px;
+}
+
+.note {
+    display: flex;
+    margin: 25px 0px 7px 0px;
+}
+.note textarea {
+    border-radius: 0.25em;
+    padding: 15px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 1.1;
+    background-color: #fff;
+    margin-left: 20px;
+    resize: none;
+    outline: none;
+}
+
+.submit {
+    margin-left: 33%;
+    margin-top: 20px;
+    border-radius: 0.25em;
+    padding: 8px 13px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #fef200;
+}

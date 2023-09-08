@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income & Expense</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="ledger">
+
+            <div class="balance-container">
+                <h1>Income & Expense Tracker</h1>
+                <p>&#3647 10,000</p>
+            </div>
+
+            <div class="inc-exp-container">
+                <h3 style="font-size: 23px;">Add a Transaction</h3>
+                
+                <div class="type">
+                    <!-- รายรับหรือรายจ่าย -->
+                    <p>Type</p>
+                    <form action="#">
+                        <select name = "type">
+                            <optgroup>
+                                <option value = "income">Income</option>
+                                <option value = "expense" selected>Expense</option>
+                            </optgroup>
+                        </select>
+                    </form>
+                </div>
+                <!-- amount -->
+                <div class="amount">
+                    <p>Amount</p>
+                    <input type="number" placeholder="THB">
+                </div>
+                
+                <!-- อาจจะใส่ ถ้าเลือก Income ก็จะมี categories อีกแบบ Expense ก็อีกแบบ -->
+                
+                <!-- วันที่ -->
+                <div class="date">
+                    <p>Date</p>
+                    <input type="date"/>
+                </div>
+                <!-- note เพิ่มเติม -->
+                <div class="note">
+                    <p>Note</p>
+                    <textarea rows = "5" cols = "30" placeholder="Write a note..."></textarea>
+                </div>
+                <input type="submit" class="submit" value="Add Transaction">
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
