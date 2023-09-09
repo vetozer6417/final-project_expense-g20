@@ -22,10 +22,11 @@ body {
     border-radius: 10px;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
     display: flex;
+    overflow:hidden
 }
 
 h1 {
-    font-size: 32px;
+    font-size: 34px;
     color: #fef200;
 }
 
@@ -40,13 +41,20 @@ p {
 
 button {
     cursor: pointer;
-    outline: none;
+    border: none;
+}
+
+.remove-btn {
+    color: white;
+    background-color: rgb(255, 75, 75);
+    padding: 6px 10px;
+    border-radius: 40px;
+    float: right;
 }
 
 select {
-    min-width: 15ch;
-    max-width: 30ch;
-    border: 1px solid var(--select-border);
+    width: 150px;
+    border: none;
     border-radius: 0.25em;
     padding: 2px 5px;
     font-size: 16px;
@@ -70,6 +78,7 @@ input:focus {
     outline: none;
 }
 .ledger {
+    overflow:hidden;
     width: 60%;
     background-color: #0046be;
     border-radius: 10px 0px 0px 10px;
@@ -133,10 +142,10 @@ input:focus {
     margin: 25px 0px 7px 0px;
 }
 .note textarea {
+    border: none;
     border-radius: 0.25em;
     padding: 15px 15px;
     font-size: 16px;
-    cursor: pointer;
     line-height: 1.1;
     background-color: #fff;
     margin-left: 20px;
@@ -147,9 +156,60 @@ input:focus {
 .submit {
     margin-left: 33%;
     margin-top: 20px;
+    border: none;
     border-radius: 0.25em;
     padding: 8px 13px;
     font-size: 16px;
     cursor: pointer;
     background-color: #fef200;
+}
+
+.transaction {
+    overflow:hidden
+}
+
+.item {
+    border-radius: inherit;
+    padding: 13px 26px 2px 26px;
+}
+
+.item:hover {
+    background-color: rgb(230, 230, 230);
+    transition: 0.5s;
+}
+
+.item-bottom {
+    display: flex;
+}
+
+.transaction-date {
+    width: 270px;
+    border-radius: 5px;
+    background-color: rgb(219, 219, 219);
+    padding: 2px 10px;
+}
+.left {
+    width: 70%;  
+}
+.right {
+    width: 30%;
+    text-align: right;
+    margin: 17px 10px 0px 0px;
+}
+.transaction-amount {
+    padding: 10px 10px 5px 10px;
+}
+
+/* แก้เป็น If ตอนทำ backend */
+.transaction-income {
+    color: rgb(66, 212, 110);
+}
+
+.transaction-expense {
+    color: rgb(255, 75, 75);
+}
+
+.transaction-note {
+    padding: 0px 10px;
+    color: rgb(110, 110, 110);
 }
