@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 const app = express();
 const PORT = process.env.PORT || 3000
@@ -17,6 +18,7 @@ const Transaction = mongoose.model('Transaction', {
     note: String,
 });
 
+app.use(cors({ origin: 'http://localhost:3221' }))
 app.use(bodyParser.json());
 
 app.get('/api/transactions', async (req, res) => {
