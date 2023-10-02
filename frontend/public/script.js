@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const amountInt = transaction.amount
         const amountString = amountInt.toLocaleString("en-US")
-
+        
         item.innerHTML = `
             <div class="transaction-date">
                 <p>${transaction.date}</p>
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 </div>
                 <div class="right">
-                    <button type="button" class="remove-btn">X</button>
+                <button type="button" id="removeBtn" class="remove-btn" data-transaction-id="${transaction._id}">X</button>
                 </div>
             </div>
         `
@@ -100,12 +100,11 @@ document.addEventListener('DOMContentLoaded', function () {
             getTransactions()
         })
     }
-
     async function removeTransaction(transaction) {
         console.log('removeTransaction function called')
         console.log(transaction);
         try {
-            fetch(apiUrl/transaction._id, {
+            await fetch(`http://localhost:3000/api/transactions/${transaction}`, {
                 method: 'DELETE'
             })
             getTransactions() //refresh the data fetched again
@@ -118,9 +117,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     transactionList.addEventListener('click', async (event) => {
         if (event.target.classList.contains('remove-btn')) {
-            const transactionElement = event.target.closest('.item');
-            const transactionId = transactionElement.getAttribute('data-transaction-id');
+            const element = document.getElementById('removeBtn');
+        if (element) {
+            const transactionId = element.getAttribute('data-transaction-id');
             removeTransaction(transactionId);
+        } else {
+            console.log('Element not found.');
+        }
         }
     });
 
