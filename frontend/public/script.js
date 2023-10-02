@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     }
 
-    input_submit.addEventListener('submit',addTransaction)
+    input_submit.addEventListener('click', addTransaction)
 
     init()
 })
