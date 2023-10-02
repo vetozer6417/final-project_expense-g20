@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         getTransactions()
     }
 
+    //fetch data
     async function getTransactions() {
         try {
             const response = await fetch(apiUrl)
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    //Show data to list
     async function addDataToList(transaction) {
         let symbol = ''
         if(transaction.type == 'Income') {
@@ -37,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         const item = document.createElement('div')
         item.classList.add('item')
+
         const amountInt = transaction.amount
         const amountString = amountInt.toLocaleString("en-US")
 
@@ -54,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 </div>
                 <div class="right">
-                    <button type="submit" class="remove-btn">X</button>
+                    <button type="button" class="remove-btn">X</button>
                 </div>
             </div>
         `
@@ -98,7 +101,28 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     }
 
+    async function removeTransaction(transaction) {
+        console.log('removeTransaction function called')
+        console.log(transaction);
+        try {
+            fetch(apiUrl/transaction._id, {
+                method: 'DELETE'
+            })
+            getTransactions() //refresh the data fetched again
+        } catch (error) {
+            console.error('Error deleting transaction:', error)
+        }
+    }
+
     input_submit.addEventListener('click', addTransaction)
+
+    transactionList.addEventListener('click', async (event) => {
+        if (event.target.classList.contains('remove-btn')) {
+            const transactionElement = event.target.closest('.item');
+            const transactionId = transactionElement.getAttribute('data-transaction-id');
+            removeTransaction(transactionId);
+        }
+    });
 
     init()
 })

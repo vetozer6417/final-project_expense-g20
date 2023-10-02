@@ -58,6 +58,16 @@ app.post('/api/transactions', async (req, res) => {
   }
 });
 
+//Delete data
+app.delete('/api/transactions/:id', async (req, res) => {
+  try {
+    await Transaction.deleteOne({ _id: req.params.id })
+    res.sendStatus(204)
+  } catch (error) {
+    res.status(500).json({ error: 'Server error, cannot delete' });
+  }
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
