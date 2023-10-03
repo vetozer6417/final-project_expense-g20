@@ -165,7 +165,7 @@ input:focus {
 }
 
 .transaction {
-    overflow:hidden
+    overflow:scroll;
 }
 
 .item {

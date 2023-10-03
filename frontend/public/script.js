@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const input_note = document.getElementById('input-note')
     const input_submit = document.getElementById('submit-button')
 
-    const transactionList = document.getElementById('list');
+    const transactionList = document.getElementById('list')
+    const totalSavings = document.getElementById('total-savings')
 
     const apiUrl = 'http://localhost:3000/api/transactions'
 
@@ -18,39 +19,75 @@ document.addEventListener('DOMContentLoaded', function () {
     async function getTransactions() {
         try {
             const response = await fetch(apiUrl)
-            const transaction = await response.json()
+            const transactions = await response.json()
             transactionList.innerHTML = '' //Clear existing list
-            transaction.forEach((transaction) => {
+            transactions.forEach((transaction) => {
                 console.log(transaction)
                 addDataToList(transaction)
             })
+
+            addTotalSavings(transactions)
         } catch {
             console.error('Error fetching transactions:')
         }
     }
 
+    async function addTotalSavings(transactions) {
+        let totalSavingsAmount = 0
+
+        transactions.forEach((transaction) => {
+            if(transaction.type === 'income') {
+                totalSavingsAmount += transaction.amount
+            } else if (transaction.type === 'expense') {
+                totalSavingsAmount -= transaction.amount
+            }
+        })
+        const totalSavingsElement = document.createElement('p')
+        totalSavingsElement.innerHTML = `&#3647 ${totalSavingsAmount}`
+        //Clear existing content
+        totalSavings.innerHTML = ''
+        //append into the container
+        totalSavings.appendChild(totalSavingsElement)
+    }
+
     //Show data to list
     async function addDataToList(transaction) {
         let symbol = ''
-        if(transaction.type == 'Income') {
+        if(transaction.type === 'income') {
             symbol = '+'
-        } else if( transaction.type == "Expense") {
+        } else if( transaction.type === "expense") {
             symbol = '-'
         }
+
         const item = document.createElement('div')
         item.classList.add('item')
 
         const amountInt = transaction.amount
         const amountString = amountInt.toLocaleString("en-US")
-        
+
+        //format date
+        const transactionDate = new Date(transaction.date)
+        const day = String(transactionDate.getDate())
+        const month = String(transactionDate.getMonth() + 1) //month starts at 0
+        const year = transactionDate.getFullYear()
+        const formattedDate =  `${day}/${month}/${year}`
+
+        //amount color by categories -- divide by class
+        let transactionColor = ''
+        if(transaction.type === "income") {
+            transactionColor = "transaction-income"
+        } else if (transaction.type === "expense") {
+            transactionColor = "transaction-expense"
+        }
+
         item.innerHTML = `
             <div class="transaction-date">
-                <p>${transaction.date}</p>
+                <p>${formattedDate}</p>
             </div>
             <div class="item-bottom">
                 <div class="left">
                     <div class="transaction-amount">
-                        <p class="transaction-expense">${symbol}THB ${amountString}</p>
+                        <p class="${transactionColor}">${symbol}THB ${amountString}</p>
                     </div>
                     <div class="transaction-note">
                         <p>${transaction.note}</p>
