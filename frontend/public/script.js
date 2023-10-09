@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const input_submit = document.getElementById('submit-button')
 
     const transactionList = document.getElementById('list')
-    const totalSavings = document.getElementById('total-savings')
+    const totalSavings = document.getElementById('balance-container')
 
     const apiUrl = 'http://localhost:3000/api/transactions'
 
@@ -42,7 +42,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 totalSavingsAmount -= transaction.amount
             }
         })
-        const totalSavingsElement = document.createElement('p')
+        totalSavingsAmount = Math.floor(totalSavingsAmount * 100) / 100
+        const totalSavingsElement = document.getElementById('total-savings')
         totalSavingsElement.innerHTML = `&#3647 ${totalSavingsAmount}`
         //Clear existing content
         totalSavings.innerHTML = ''
